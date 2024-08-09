@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        //PlayerPref.DeleteAll(); to restart the game
         instance = this;
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
@@ -35,14 +36,30 @@ public class GameManager : MonoBehaviour
     public int exp;
 
     public void SaveState()
-    { 
-        Debug.Log("SaveState");
+    {
+        string s = "";
+
+        s += "0" + "|";
+        s += gold.ToString() + "|";
+        s += exp.ToString() + "|";
+        s += "0";
+
+        PlayerPrefs.SetString("SaveState", s);
     }
 
     public void LoadState(Scene s, LoadSceneMode mode)
     {
+        if (!PlayerPrefs.HasKey("SaveState"))
+            return;
         //SceneManager.sceneLoaded -= LoadState (to unregister the state), unless you want the data to persist
+        string[] data = PlayerPrefs.GetString("SaveState").Split('|');
 
+        //Change Player Skin
+
+        //Gold and Exp
+        gold = int.Parse(data[1]);
+        exp = int.Parse(data[2]);
+        //Change weapon level
         Debug.Log("LoadState");
     }
 }
