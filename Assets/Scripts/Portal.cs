@@ -11,6 +11,7 @@ public class Portal : Collidable
         if (collider.name == "Player")
         {
             //Teleport the player to random dungeon
+            GameManager.instance.SaveState();
             string sceneName = sceneNames[Random.Range(0, sceneNames.Length)];
             SceneManager.LoadScene(sceneName);
         }
