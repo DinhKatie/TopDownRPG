@@ -30,10 +30,17 @@ public class GameManager : MonoBehaviour
     //References
     public Player player;
     //public Weapon weapon...
+    public FloatingTextManager ftManager;
 
     //Logic
     public int gold;
     public int exp;
+
+    //Ensure ftManager is only used in one spot for better organization
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    {
+        ftManager.Show(msg, fontSize, color, position, motion, duration);
+    }
 
     public void SaveState()
     {
