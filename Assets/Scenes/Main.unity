@@ -1756,7 +1756,7 @@ MonoBehaviour:
   weaponPrices: 
   xpTable: 
   player: {fileID: 0}
-  gold: 15
+  gold: 0
   exp: 0
 --- !u!4 &551524845
 Transform:
