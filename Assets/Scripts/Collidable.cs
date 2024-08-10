@@ -34,7 +34,7 @@ public class Collidable : MonoBehaviour
     //Use inheritance to change the definition across several pickups
     protected virtual void OnCollide(Collider2D collider) 
     {
-        Debug.Log(collider.name);
+        Debug.Log("Basic OnCollide: " + collider.name + "by " + this.name);
     }
 
 
