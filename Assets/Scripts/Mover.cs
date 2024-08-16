@@ -26,6 +26,12 @@ public abstract class Mover : Fighter
         else if (moveDelta.x < 0)
             transform.localScale = new Vector3(-1, 1, 1);
 
+        //Add push vector, if any
+        moveDelta += pushDirection;
+
+        //Reduce push force by every frame, based on recovery speed
+        pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
+
         //Check for collision along the y-axis by casting a box there first. If box returns null, free to move
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
         if (hit.collider == null)
