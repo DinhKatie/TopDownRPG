@@ -26,6 +26,8 @@ public class Enemy : Mover
         playerTransform = GameManager.instance.player.transform;
         startingPosition = transform.position;
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>(); //Get the bigger hitbox
+        xSpeed = 0.5f;
+        ySpeed = 0.5f;
     }
 
     protected void FixedUpdate()
