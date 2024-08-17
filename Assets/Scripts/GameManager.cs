@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //PlayerPref.DeleteAll(); to restart the game
+        PlayerPrefs.DeleteAll(); //to restart the game
         instance = this;
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
