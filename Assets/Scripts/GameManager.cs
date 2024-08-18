@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        PlayerPrefs.DeleteAll(); //to restart the game
+        //PlayerPrefs.DeleteAll(); //to restart the game
         instance = this;
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     //References
     public Player player;
-    //public Weapon weapon...
+    public Weapon weapon;
     public FloatingTextManager ftManager;
 
     //Logic
@@ -42,6 +42,22 @@ public class GameManager : MonoBehaviour
         ftManager.Show(msg, fontSize, color, position, motion, duration);
     }
 
+    //Upgrade Weapon
+    public bool TryUpgradeWeapon()
+    {
+        //Is the Weapon already maxed?
+        if (weaponPrices.Count <= weapon.weaponLevel)
+            return false;
+
+        if (gold >= weaponPrices[weapon.weaponLevel])
+        {
+            gold -= weaponPrices[weapon.weaponLevel];
+            weapon.UpgradeWeapon();
+            return true;
+        }
+        return false;
+    }
+
     public void SaveState()
     {
         string s = "";
@@ -49,7 +65,7 @@ public class GameManager : MonoBehaviour
         s += "0" + "|";
         s += gold.ToString() + "|";
         s += exp.ToString() + "|";
-        s += "0";
+        s += weapon.weaponLevel.ToString();
 
         PlayerPrefs.SetString("SaveState", s);
     }
@@ -67,6 +83,8 @@ public class GameManager : MonoBehaviour
         gold = int.Parse(data[1]);
         exp = int.Parse(data[2]);
         //Change weapon level
+        weapon.SetWeaponLevel(int.Parse(data[3]));
+
         Debug.Log("LoadState");
     }
 }

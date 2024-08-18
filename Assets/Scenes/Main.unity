@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6369736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1167586442}
+        m_TargetAssemblyTypeName: CharacterMenu, Assembly-CSharp
+        m_MethodName: OnUpgradeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6369736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +654,7 @@ GameObject:
   - component: {fileID: 133409564}
   - component: {fileID: 133409563}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: UpgradeCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2797,10 +2809,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprites: []
-  weaponSprites: []
-  weaponPrices: 
+  weaponSprites:
+  - {fileID: -429946630, guid: 4bba4da307233d8428a40e7abc25696e, type: 3}
+  - {fileID: 742171367, guid: 4bba4da307233d8428a40e7abc25696e, type: 3}
+  - {fileID: -232153801, guid: 4bba4da307233d8428a40e7abc25696e, type: 3}
+  - {fileID: -1450544717, guid: 4bba4da307233d8428a40e7abc25696e, type: 3}
+  - {fileID: -609761941, guid: 4bba4da307233d8428a40e7abc25696e, type: 3}
+  - {fileID: -119062855, guid: 4bba4da307233d8428a40e7abc25696e, type: 3}
+  - {fileID: -482741766, guid: 4bba4da307233d8428a40e7abc25696e, type: 3}
+  weaponPrices: 1e000000460000006400000082000000b4000000f0000000
   xpTable: 
   player: {fileID: 2088495777}
+  weapon: {fileID: 1557296645}
   ftManager: {fileID: 1544930880}
   gold: 0
   exp: 0
@@ -3689,6 +3709,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Show
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1167586442}
+        m_TargetAssemblyTypeName: CharacterMenu, Assembly-CSharp
+        m_MethodName: UpdateMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &858887262
@@ -12268,6 +12300,7 @@ GameObject:
   - component: {fileID: 1167586436}
   - component: {fileID: 1167586440}
   - component: {fileID: 1167586441}
+  - component: {fileID: 1167586442}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -12392,6 +12425,26 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1167586442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167586435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c13f3d99ff0b34b9e172c11d9add6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 675899375}
+  hitpointText: {fileID: 1471359606}
+  goldText: {fileID: 568184659}
+  upgradeCostText: {fileID: 133409563}
+  xpText: {fileID: 136807678}
+  charSprite: {fileID: 1213236339}
+  weaponSprite: {fileID: 1897681897}
+  xpBar: {fileID: 1701488901}
 --- !u!1 &1213236337
 GameObject:
   m_ObjectHideFlags: 0
@@ -12856,8 +12909,15 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  damagePoint: 1
-  pushForce: 4
+  damagePoint: 01000000020000000300000004000000050000000600000007000000
+  pushForce:
+  - 2
+  - 2.2
+  - 2.5
+  - 3
+  - 3.2
+  - 3.6
+  - 4
   weaponLevel: 0
 --- !u!61 &1557296646
 BoxCollider2D:
