@@ -58,6 +58,51 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    //Exp System
+    public int GetCurrentLevel()
+    {
+        int r = 0;
+        int add = 0;
+        while (exp >= add)
+        {
+            add += xpTable[r];
+            r++;
+
+            if (r == xpTable.Count)
+                return r;
+        }
+        return r;
+    }
+
+    public int GetXpToLevel(int level)
+    {
+        int r = 0;
+        int xp = 0;
+
+        while (r < level)
+        {
+            xp += xpTable[r];
+            r++;
+        }
+        return xp;
+    }
+
+    public void GrantXP(int xp)
+    {
+        int currLevel = GetCurrentLevel();
+        exp += xp;
+
+        //Did we level up?
+        if (currLevel < GetCurrentLevel())
+            OnLevelUp();
+    }
+
+    public void OnLevelUp()
+    {
+        player.OnLevelUp();
+    }
+
+
     public void SaveState()
     {
         string s = "";
@@ -82,6 +127,9 @@ public class GameManager : MonoBehaviour
         //Gold and Exp
         gold = int.Parse(data[1]);
         exp = int.Parse(data[2]);
+
+        if (GetCurrentLevel() != 1)
+            player.SetLevel(GetCurrentLevel());
         //Change weapon level
         weapon.SetWeaponLevel(int.Parse(data[3]));
 

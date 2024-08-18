@@ -64,10 +64,27 @@ public class CharacterMenu : MonoBehaviour
         //Char Information
         hitpointText.text = GameManager.instance.player.hitPoints.ToString();
         goldText.text = GameManager.instance.gold.ToString();
-        levelText.text = "Not added yet";
+        levelText.text = GameManager.instance.GetCurrentLevel().ToString();
 
         //XP Bar
-        xpText.text = "Not added yet";
-        xpBar.localScale = new Vector3(0.5f, 0, 0);
+        int currLevel = GameManager.instance.GetCurrentLevel();
+        //If Max Level
+        if (currLevel == GameManager.instance.xpTable.Count)
+        {
+            xpText.text = GameManager.instance.exp.ToString() + " total EXP";
+            xpBar.localScale = Vector3.one;
+        }
+        else
+        {
+            int prevLevelXP = GameManager.instance.GetXpToLevel(currLevel - 1);
+            int currLevelXP = GameManager.instance.GetXpToLevel(currLevel);
+
+            int diff = currLevelXP - prevLevelXP;
+            int currXPIntoLevel = GameManager.instance.exp - prevLevelXP;
+
+            float completionRatio = (float) currXPIntoLevel / diff;
+            xpText.text = currXPIntoLevel.ToString() + " / " + diff;
+            xpBar.localScale = new Vector3(completionRatio, 1, 1);
+        }
     }
 }
