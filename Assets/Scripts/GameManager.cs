@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
         if (GameManager.instance != null)
         {
             Destroy(gameObject);
+            Destroy(player.gameObject);
+            Destroy(ftManager.gameObject);
             return;
         }
         //PlayerPrefs.DeleteAll(); //to restart the game
