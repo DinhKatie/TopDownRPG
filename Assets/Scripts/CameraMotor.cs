@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMotor : MonoBehaviour
 {
-    public Transform lookAt;
+    private Transform lookAt;
 
     //the "square" of the camera: if the player moves out of bounds, move the camera
     public float boundX = 0.3f;
