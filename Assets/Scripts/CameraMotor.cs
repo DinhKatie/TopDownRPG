@@ -10,6 +10,11 @@ public class CameraMotor : MonoBehaviour
     public float boundX = 0.3f;
     public float boundY = 0.15f;
 
+    private void Start()
+    {
+        lookAt = GameObject.Find("Player").transform;
+    }
+
     //Called after Update() and FixedUpdate()
     //Move camera AFTER player has done their movement
     private void LateUpdate()
